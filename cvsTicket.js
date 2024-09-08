@@ -77,7 +77,7 @@ function printVdty(){
   paragraph.innerText = "";
 
   for(let i = 0; i <=n; i++) {
-    if(validData[i] <= nowDate && nowDate <= expireData[i]) { 
+    if(validData[i] <= nowDate && nowDate <= expireData[i]) {
       paragraph.innerText = `・${chainData[i]}》${goodsData[i]} ❣期限:${expireData[i]}`;
       resultArea.appendChild(paragraph);
     }
