@@ -7,10 +7,11 @@
   <link rel="stylesheet" href="cvsTicket.css">
 </head>
 <body>
+  <div id="imageDiv">
   <h2>チケット有効期間まるわかりアプリ</h2>
   <h3 id="heading" class="face">チケット開始日、終了日、コンビニ、商品名を入力したら決定するボタンを押してください👍</h3>
   <h5>☆引換可能なチケットリストは以下の通りです☆</h5>
-  <div id="result"></div>  
+  <div id="result"></div>
   <input type="date" name="date" id="validDate">引換開始日</input><br>
   <input type="date" name="date" id="expireDate">引換終了日</input><br>
   <select class="from-select" id="cvs" required aria-label="select-example" style="width: 30%;">
@@ -21,6 +22,7 @@
   </select>CVSﾁｴｰﾝ<br>
   <input type="text" name="商品名" id="goodsName" size="40" maxlength="40">引換商品<br>
   <button id="submit">決定する</button><div id="info"></div>
+  <script src="hanabi.js"></script>
   <script src="cvsTicket.js"></script>
 </body>
 </html>
