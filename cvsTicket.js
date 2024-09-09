@@ -1,5 +1,4 @@
 let nowDate = null;
-let startDate = null;
 let heading = document.getElementById(`heading`);
 let validDate = document.getElementById(`validDate`);
 let expireDate = document.getElementById(`expireDate`);
