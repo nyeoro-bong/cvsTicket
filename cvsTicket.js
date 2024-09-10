@@ -77,7 +77,10 @@ function printVdty(){
 
   for(let i = 0; i <=n; i++) {
     if(validData[i] <= nowDate && nowDate <= expireData[i]) {
-      paragraph.innerText = `・${chainData[i]}》${goodsData[i]} ❣期限:${expireData[i]}`;
+      paragraph.innerText = `・${chainData[i]}》${goodsData[i]} !期限:${expireData[i]}`;
+      if(expireData[i] - nowDate <= 3) {
+        resultArea.setAttribute("class", "alert");
+      }
       resultArea.appendChild(paragraph);
     }
   }
