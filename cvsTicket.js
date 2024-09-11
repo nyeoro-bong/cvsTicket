@@ -2,14 +2,14 @@ let nowDate = null;
 let heading = document.getElementById(`heading`);
 let validDate = document.getElementById(`validDate`);
 let expireDate = document.getElementById(`expireDate`);
-let cvs = document.getElementById(`cvs`);
+let cvsName = document.getElementById(`cvs`);
 let goodsName = document.getElementById(`goodsName`);
 let submit = document.getElementById(`submit`);
 let infoArea = document.getElementById(`info`);
 let resultArea = document.getElementById(`result`);
 let validData = ["2024-09-01"];
 let expireData = ["2024-09-30"];
-let chainData = ["その他CVS"];
+let cvsData = ["その他CVS"];
 let goodsData = ["マツキヨ10%割引クーポン券"];
 let n = 0; //データカウンタ
 
@@ -18,50 +18,50 @@ submit.addEventListener(
   ()=>{
     let valid = validDate.value;
     let expire = expireDate.value;
-    let chain = cvs.value;
+    let cvs = cvsName.value;
     let goods = goodsName.value;
-    const header = document.createElement("h5");
+    const infoMsg = document.createElement("text");
     infoArea.innerText = "";
 
   if (valid.length === 0) {
-      header.innerText = "❕引換開始日が入力されていません。❕"
-      infoArea.appendChild(header);
+      infoMsg.innerText = "❕引換開始日が入力されていません。❕"
+      infoArea.appendChild(infoMsg);
       return;
     } else if (expire.length === 0) {
-      header.innerText = "❕引換終了日が入力されていません。❕"
-      infoArea.appendChild(header);
+      infoMsg.innerText = "❕引換終了日が入力されていません。❕"
+      infoArea.appendChild(infoMsg);
       return;
-    } else if(chain.length === 0) {
-      header.innerText = "❕チェーン名が入力されていません。❕"
-      infoArea.appendChild(header);
+    } else if(cvs.length === 0) {
+      infoMsg.innerText = "❕チェーン名が入力されていません。❕"
+      infoArea.appendChild(infoMsg);
       return;
     } else if(goods.length === 0) {
-      header.innerText = "❕商品名が入力されていません。❕"
-      infoArea.appendChild(header);
+      infoMsg.innerText = "❕商品名が入力されていません。❕"
+      infoArea.appendChild(infoMsg);
       return;
     } else {
       validData.push(valid);
       expireData.push(expire);
-      chainData.push(chain);
+      cvsData.push(cvs);
       goodsData.push(goods);
       n = n+1;
-      header.innerText = "❕引換クーポン情報が登録されました❕"
-      infoArea.appendChild(header);
+      infoMsg.innerText = "👍引換クーポン情報が登録されました👍"
+      infoArea.appendChild(infoMsg);
       printVdty();
     }
     console.log(valid);
     console.log(expire);
-    console.log(chain);
+    console.log(cvs);
     console.log(goods);
   }
 );
 
 let degree = 0;
-function rotateHeading() {
+function rotateInfo() {
   degree = degree + 6;
-  heading.style.transform = `rotateX(${degree}deg)`;
+  infoArea.style.transform = `rotateX(${degree}deg)`;
 }
-setInterval(rotateHeading, 30);
+setInterval(rotateInfo, 30);
 
 const formatDate = (date = new Date()) => {
   const yyyy = date.getFullYear();
@@ -71,22 +71,23 @@ const formatDate = (date = new Date()) => {
 };
 
 function printVdty(){
-  const nowDate = formatDate();
+  nowDate = formatDate();
   let paragraph = document.createElement("p");
   paragraph.innerText = "";
-
   for(let i = 0; i <=n; i++) {
     if(validData[i] <= nowDate && nowDate <= expireData[i]) {
-      paragraph.innerText = `・${chainData[i]}》${goodsData[i]} !期限:${expireData[i]}`;
+      paragraph.innerText = `★${cvsData[i]}》${goodsData[i]} !期限:${expireData[i]}`;
       if(expireData[i] - nowDate <= 3) {
         resultArea.setAttribute("class", "alert");
       }
       resultArea.appendChild(paragraph);
+    } else {
+      paragraph.innerText = ""
     }
   }
   console.log(validData[0]);
   console.log(expireData[0]);
-  console.log(chainData[0]);
+  console.log(cvsData[0]);
   console.log(goodsData[0]);
 }
 
