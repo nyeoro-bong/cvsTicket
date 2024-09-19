@@ -1,5 +1,4 @@
 let nowDate = null;
-let heading = document.getElementById(`heading`);
 let validDate = document.getElementById(`validDate`);
 let expireDate = document.getElementById(`expireDate`);
 let cvsName = document.getElementById(`cvs`);
@@ -45,6 +44,9 @@ submit.addEventListener(
       cvsData.push(cvs);
       goodsData.push(goods);
       n = n+1;
+      validDate.value = ""
+      expireDate.value = ""
+      goodsName.value = ""
       infoMsg.innerText = "👍引換クーポン情報が登録されました👍"
       infoArea.appendChild(infoMsg);
       printVdty();
@@ -66,7 +68,7 @@ setInterval(rotateInfo, 30);
 const formatDate = (date = new Date()) => {
   const yyyy = date.getFullYear();
   const mm = String(date.getMonth() + 1).padStart(2, "0"); // 月は0から始まるため、1を足す
-  const dd = String(date.getDate()).padStart(2, "0");
+  const dd = String(date.getDate()).padStart(2, "0"); // 月日の形式をそろえるため、2桁表示にする
   return `${yyyy}-${mm}-${dd}`;
 };
 
@@ -77,8 +79,10 @@ function printVdty(){
   for(let i = 0; i <=n; i++) {
     if(validData[i] <= nowDate && nowDate <= expireData[i]) {
       paragraph.innerText = `★${cvsData[i]}》${goodsData[i]} !期限:${expireData[i]}`;
-      if(expireData[i] - nowDate <= 3) {
-        resultArea.setAttribute("class", "alert");
+      let expireTexts = expireData[i].split("-");
+      let nowTexts = nowDate.split("-");
+      if(expireTexts[2] - nowTexts[2] <= 3) {
+        resultArea.setAttribute('class', 'alert');
       }
       resultArea.appendChild(paragraph);
     } else {
