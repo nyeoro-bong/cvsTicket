@@ -5,6 +5,7 @@ let cvsName = document.getElementById(`cvs`);
 let goodsName = document.getElementById(`goodsName`);
 let submit = document.getElementById(`submit`);
 let infoArea = document.getElementById(`info`);
+let closeArea = document.getElementById(`closeResult`);
 let resultArea = document.getElementById(`result`);
 let validData = ["2024-09-01"];
 let expireData = ["2024-09-30"];
@@ -68,7 +69,7 @@ setInterval(rotateInfo, 30);
 const formatDate = (date = new Date()) => {
   const yyyy = date.getFullYear();
   const mm = String(date.getMonth() + 1).padStart(2, "0"); // 月は0から始まるため、1を足す
-  const dd = String(date.getDate()).padStart(2, "0"); // 月日の形式をそろえるため、2桁表示にする
+  const dd = String(date.getDate()).padStart(2, "0");
   return `${yyyy}-${mm}-${dd}`;
 };
 
@@ -81,10 +82,17 @@ function printVdty(){
       paragraph.innerText = `★${cvsData[i]}》${goodsData[i]} !期限:${expireData[i]}`;
       let expireTexts = expireData[i].split("-");
       let nowTexts = nowDate.split("-");
-      if(expireTexts[2] - nowTexts[2] <= 3) {
-        resultArea.setAttribute('class', 'alert');
+      if(expireTexts[1] - nowTexts[1] >= 1){        //月またぎ処理
+        if(expireTexts[2] +30 - nowTexts[1] <= 3){  //月初Dateレコードに+30して差を取り直前レコード判定
+          closeArea.appendChild(paragraph);
+        } else {
+          resultArea.appendChild(paragraph);
+        }
+      }else if( expireTexts[2] - nowTexts[2] <= 3 ) {
+        closeArea.appendChild(paragraph);
+      } else {
+        resultArea.appendChild(paragraph);
       }
-      resultArea.appendChild(paragraph);
     } else {
       paragraph.innerText = ""
     }
