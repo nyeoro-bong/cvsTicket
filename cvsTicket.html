@@ -8,10 +8,9 @@
   <link rel="stylesheet" href="cvsTicket.css">
 </head>
 <body class="bg-dark-subtle" data-bs-theme="dark">
-<div id="imageDiv">
   <header>
     <nav class="navbar bg-dark" data-bs-theme="dark">
-      <div class="container-fluid"> 
+      <div class="container-fluid">
         <a class="navbar-brand" href="#">今日使えるコンビニ引換チケットは？</a>
       </div>
     </nav>
@@ -19,6 +18,7 @@
   <div class="container pt-1">
     <h5>引換開始日、終了日、コンビニ、商品名を入力して決定するボタンを押して下さい👍</h5>
     !引換可能なチケットリストは以下の通りです!
+    <div id="closeResult" class="hurry"></div>
     <div id="result" class="normal"></div>
     <input type="date" name="date" id="validDate">引換開始日</input><br>
     <input type="date" name="date" id="expireDate">引換終了日</input><br>
@@ -32,8 +32,6 @@
     <button id="submit">決定する</button>
     <div id="info"></div>
   </div>
-</div>
-<script src="hanabi.js"></script>
-<script src="cvsTicket.js"></script>
+  <script src="cvsTicket.js"></script>
 </body>
 </html>
