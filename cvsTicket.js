@@ -66,6 +66,12 @@ function rotateInfo() {
 }
 setInterval(rotateInfo, 30);
 
+/**
+ * dateオブジェクトを渡すと　yyyy-mm-dd　形式の日付を返す関数formatDate
+ * @param {object} date         !new Date()で作成したdateオブジェクト
+ * @return {string} yyyy-mm-dd  !yyyy-mm-dd形式に整形された文字列
+ */
+
 const formatDate = (date = new Date()) => {
   const yyyy = date.getFullYear();
   const mm = String(date.getMonth() + 1).padStart(2, "0"); // 月は0から始まるため、1を足す
