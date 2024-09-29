@@ -89,7 +89,7 @@ function printVdty(){
       let expireTexts = expireData[i].split("-");
       let nowTexts = nowDate.split("-");
       if(expireTexts[1] - nowTexts[1] >= 1){        //月またぎ処理
-        if(expireTexts[2] +30 - nowTexts[1] <= 3){  //月初Dateレコードに+30して差を取り直前レコード判定
+        if(expireTexts[2] +30 - nowTexts[2] <= 3){  //月初Dateレコードに+30して差を取り直前レコード判定
           closeArea.appendChild(paragraph);
         } else {
           resultArea.appendChild(paragraph);
