@@ -90,13 +90,13 @@ function printVdty(){
       paragraph.innerText = `★${cvsData[i]}》${goodsData[i]} !期限:${expireData[i]}`;
       expireTexts = expireData[i].split("-");
       nowTexts = nowDate.split("-");
-      if(Number(expireTexts[1]) - Number(nowTexts[1]) > 0){        //月またぎ処理
-        if(Number(expireTexts[2]) +30 - Number(nowTexts[2]) <= 3){  //月初Dateレコードに+30して差を取り直前レコード判定
+      if(parseInt(expireTexts[1]) - parseInt(nowTexts[1]) > 0){        //月またぎ処理
+        if(parseInt(expireTexts[2]) +30 - parseInt(nowTexts[2]) <= 3){  //月初Dateレコードに+30して差を取り直前レコード判定
           closeArea.appendChild(paragraph);
         } else {
           resultArea.appendChild(paragraph);
         }
-      }else if( Number(expireTexts[2]) - Number(nowTexts[2]) <= 3 ) {
+      }else if( parseInt(expireTexts[2]) - parseInt(nowTexts[2]) <= 3 ) {
         closeArea.appendChild(paragraph);
       } else {
         resultArea.appendChild(paragraph);
