@@ -90,7 +90,7 @@ function printVdty(){
       paragraph.innerText = `★${cvsData[i]}》${goodsData[i]} !期限:${expireData[i]}`;
       expireTexts = expireData[i].split("-");
       nowTexts = nowDate.split("-");
-      if(parseInt(expireTexts[1]) - parseInt(nowTexts[1]) > 0){        //月またぎ処理、parseInt()で明示的に整数変換
+      if(parseInt(expireTexts[1]) - parseInt(nowTexts[1]) > 0){         //月またぎ処理 parseInt() で明示的に整数変換
         if(parseInt(expireTexts[2]) +30 - parseInt(nowTexts[2]) <= 3){  //月初Dateレコードに+30して差を取り直前レコード判定
           closeArea.appendChild(paragraph);                             //期限3日以内のレコードを closeArea に掲示
         } else {
